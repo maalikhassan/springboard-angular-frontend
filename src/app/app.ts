@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-  title = 'web-app';
+  protected readonly title = signal('springboard-angular-frontend');
 
   ngOnInit(): void {
-
+    initFlowbite();
   }
 }
 
