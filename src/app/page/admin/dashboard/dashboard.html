@@ -1,1 +1,85 @@
-<p>dashboard works!</p>
+<div class="main flex md:flex-row flex-col">
+
+    <aside class="sidebar md:w-64 w-full md:relative fixed md:translate-x-0 -translate-x-full md:h-auto h-screen md:z-auto z-[1000] transition-transform duration-300">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+            </div>
+            <div class="sidebar-title">
+                <h1>SpringBoard</h1>
+                <p>Room Management</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#"  class="nav-link active" data-page="dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="#"  class="nav-link" data-page="rooms">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="8" width="16" height="11" rx="1" />
+                    <path d="M10 19v-5h4v5" />
+                    <path d="M8 11h2" />
+                    <path d="M14 11h2" />
+                </svg>
+                <span>Room Directory</span>
+            </a>
+            <a href="#"  class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="5" width="16" height="15" rx="2" />
+                    <path d="M9 3v4" />
+                    <path d="M15 3v4" />
+                    <path d="M4 10h16" />
+                </svg>
+                <span>Bookings</span>
+            </a>
+            <a href="#"  class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="9" r="3" />
+                    <circle cx="17" cy="9" r="3" />
+                    <path d="M4 19c0-2.2 2.2-4 5-4" />
+                    <path d="M15 15c2.8 0 5 1.8 5 4" />
+                </svg>
+                <span>Users</span>
+            </a>
+            <a href="#"  class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7l9-4 9 4-9 4-9-4z" />
+                    <path d="M3 7v10l9 4 9-4V7" />
+                    <path d="M12 3v8" />
+                </svg>
+                <span>Packages</span>
+            </a>
+            <a href="#"  class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="7" width="18" height="13" rx="2" />
+                    <path d="M9 7V5a3 3 0 0 1 6 0v2" />
+                    <path d="M9 13h6" />
+                </svg>
+                <span>Companies</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">JS</div>
+                <div class="user-info">
+                    <p class="user-name">John Smith</p>
+                    <p class="user-role">Admin</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+</div>
