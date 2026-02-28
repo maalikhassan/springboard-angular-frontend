@@ -9,8 +9,10 @@
 .main{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background-color: #f8fafc;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 260px; /* leave space for fixed sidebar */
 }
 
 /* Scrollbar styling for better UI */
@@ -30,9 +32,11 @@
 
 /* Sidebar Styles */
 .sidebar {
-    width: 100%;
-    max-width: 260px;
-    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
     background: linear-gradient(to bottom, #020617, #0f172a);
     color: #cbd5e1;
     display: flex;
