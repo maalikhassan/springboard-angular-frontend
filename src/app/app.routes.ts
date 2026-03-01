@@ -1,10 +1,9 @@
-
 import {Navbar} from './page/company/navbar/navbar';
-import {Dashboard} from './page/company/dashboard/dashboard';
+import {DashboardComponent} from './page/company/dashboard/dashboard';
 import {Package} from './page/company/dashboard/package/package';
-import {Login} from './page/company/login/login';
-import {Company} from './page/company/company';
-import {Room} from './page/company/room/room';
+import {LoginComponent} from './page/company/login/login';
+import {CompanyComponent} from './page/company/company';
+import {RoomComponent} from './page/company/room/room';
 import { Routes } from "@angular/router";
 import { Admin } from "./page/admin/admin";
 import { Dashboard } from "./page/admin/dashboard/dashboard";
@@ -53,7 +52,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: Login,
+        component: LoginComponent,
       },
       {
         path: 'navbar',
@@ -61,7 +60,7 @@ export const routes: Routes = [
         children: [
           {
             path: 'dashboard',
-            component: Dashboard,
+            component: DashboardComponent,
           },
           {
             path: 'package',
@@ -69,11 +68,11 @@ export const routes: Routes = [
           },
           {
             path: 'view',
-            component: Company,
+            component: CompanyComponent,
           },
           {
             path: 'room',
-            component: Room,
+            component: RoomComponent,
           }
         ]
       }

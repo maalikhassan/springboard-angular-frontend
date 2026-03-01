@@ -10,7 +10,7 @@ import {CompanyService} from './service/company/company-service';
   templateUrl: './company.html',
   styleUrl: './company.css',
 })
-export class Company implements OnInit{
+export class CompanyComponent implements OnInit{
   companyForm: FormGroup;
   companies: any[] = [];
   currentPage = 1;
