@@ -1,21 +1,24 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RoomService} from '../service/room/room-service';
-import {NgIf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {CompanyService} from '../service/company/company-service';
+import {PackageService} from '../service/package/package-service';
 
 @Component({
   selector: 'app-room',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    NgForOf
   ],
   templateUrl: './room.html',
   styleUrl: './room.css',
 })
 export class RoomComponent {
 
+  packages :any[] =[];
   companies:any[] =[];
   roomForm: FormGroup;
   rooms: any[] = [];
@@ -25,6 +28,7 @@ export class RoomComponent {
     private fb: FormBuilder,
     private service: RoomService,
     private companyService:CompanyService,
+    private packageService: PackageService,
     private cdr:ChangeDetectorRef
   ) {
     this.roomForm = this.fb.group({
@@ -33,7 +37,8 @@ export class RoomComponent {
       company_id: ['', [Validators.required]],
       capacity: ['',Validators.required],
       type: ['',Validators.required],
-      isBooked: ['',Validators.required],
+      isBooked: [false],
+      isAvailable: [true],
       package_id: ['', [Validators.required]],
     });
   }
@@ -89,6 +94,20 @@ export class RoomComponent {
       }
     });
   }
+  getPackage() {
+    this.packageService.getAllPackage().subscribe({
+      next: (response) => {
+        // @ts-ignore
+        this.packages = response ?? [];
+        this.cdr.detectChanges();
+        // Keep currentPage valid after refresh
+        if (this.currentPage > this.totalPages) this.currentPage = this.totalPages || 1;
+      },
+      error: (error) => {
+        console.error("Error:", error);
+      }
+    });
+  }
 
   getRoom() {
     this.service.getAllRoom().subscribe({
@@ -122,11 +141,15 @@ export class RoomComponent {
   }
   clearForm() {
     this.roomForm.reset();
+    this.roomForm.get('isBooked')?.disable();
+    this.roomForm.get('isAvailable')?.disable();
   }
   editRoom(id: number){
     this.service.editRoomById(id).subscribe(
       (room:any) => {
         this.roomForm.patchValue(room);
+        this.roomForm.get('isBooked')?.enable();
+        this.roomForm.get('isAvailable')?.enable();
       },
       () => {
         alert('Failed to save room!');
@@ -137,6 +160,8 @@ export class RoomComponent {
     this.service.deleteRoomById(id).subscribe(
       () => {
         this.getRoom();
+        this.roomForm.get('isBooked')?.disable();
+        this.roomForm.get('isAvailable')?.disable();
       },
       () => {
         alert('Failed to delete room!');
@@ -158,5 +183,9 @@ export class RoomComponent {
   ngOnInit() {
     this.getRoom();
     this.getCompany();
+    this.getPackage();
+
+    this.roomForm.get('isBooked')?.disable();
+    this.roomForm.get('isAvailable')?.disable();
   }
 }

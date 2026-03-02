@@ -1,21 +1,20 @@
-<div class="ml-2 min-h-screen bg-gray-50 p-8">
+<div class="ml-2  min-h-screen bg-gray-50 p-8">
 
   <div class="flex gap-8">
-
-    <div class="w-1/3 bg-white p-6 rounded-lg shadow-sm">
+    <div class="w-1/3 bg-white p-6 rounded-lg shadow-sm h-[600px] overflow-y-auto">
       <h2 class="text-xl font-semibold mb-6">Create Room</h2>
       <form [formGroup] = "roomForm" (ngSubmit)="onSubmit()">
-        <input type="hidden" name="id" formControlName="id">
-        <div class="relative z-0 w- full mb-5 group">
-          <input type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="name"/>
+        <input type="hidden" formControlName="id">
+        <div class="relative z-0 w- full mb-4 group">
+          <input type="text" id="name" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="name"/>
           <label for="name" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Room name</label>
         </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="number" name="capacity" id="address" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="capacity" />
+        <div class="relative z-0 w-full mb-4 group">
+          <input type="number" id="address" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="capacity" />
           <label for="capacity" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Room Capacity</label>
         </div>
-        <div class="relative z-0 w-full mb-5 group">
-        <label for="type" class="block mb-2.5 text-sm font-medium text-heading">Select an option</label>
+        <div class="relative z-0 w-full mb-4 group">
+        <label for="type" class="block mb-2.5 text-sm font-medium text-heading">Select an Room Type</label>
         <select id="type" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" formControlName="type">
           <option selected>Choose a Room Type</option>
           <option value="MEETING">MEETING</option>
@@ -25,26 +24,65 @@
           <option value="SEMINAR">SEMINAR</option>
         </select>
         </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="country" id="country" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="country" />
-          <label for="country" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">rooms Country</label>
+        <div class="relative z-0 w-full mb-4 group">
+        <label for="company_id" class="block mb-2.5 text-sm font-medium text-heading">Select an Company</label>
+        <select id="company_id" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" formControlName="company_id">
+          <option selected>Choose a Company</option>
+          <option *ngFor="let company of companies"
+                  [value]="company.id">
+            {{ company.name }}
+          </option>
+        </select>
         </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="phone" id="phone" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="phone" />
-          <label for="phone" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">rooms Phone</label>
+        <div class="relative z-0 w-full mb-4 group">
+        <label for="package_id" class="block mb-2.5 text-sm font-medium text-heading">Select an Package</label>
+        <select id="package_id" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" formControlName="package_id">
+          <option selected>Choose a Package</option>
+          <option *ngFor="let package of packages"
+                  [value]="package.id">
+            {{ package.type }}
+          </option>
+        </select>
         </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="email"  />
-          <label for="email" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">rooms Email address</label>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="url" name="website" id="website" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="website"  />
-          <label for="website" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">rooms WebSite</label>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="description" id="description" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" formControlName="description" />
-          <label for="description" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Description</label>
-        </div>
+
+          <label for="type" class="block mb-2.5 text-sm font-medium text-heading">Booking Status</label>
+
+          <fieldset>
+            <legend class="sr-only">Booking Status</legend>
+
+            <div class="flex items-center mb-4">
+              <input id="booking" type="radio" [value]="true" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" checked formControlName="isBooked">
+              <label for="booking" class="select-none ms-2 text-sm font-medium text-heading">
+                Booking
+              </label>
+            </div>
+
+            <div class="flex items-center mb-4">
+              <input id="cancel" type="radio" [value]="false" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" formControlName="isBooked">
+              <label for="cancel" class="select-none ms-2 text-sm font-medium text-heading">
+                Cancel
+              </label>
+            </div>
+          </fieldset>
+
+          <label for="type" class="block mb-2.5 text-sm font-medium text-heading">Available Status</label>
+          <fieldset>
+            <legend class="sr-only">Available Status</legend>
+
+            <div class="flex items-center mb-4">
+              <input id="available" type="radio" [value]="true" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" checked formControlName="isAvailable">
+              <label for="available" class="select-none ms-2 text-sm font-medium text-heading">
+                Available
+              </label>
+            </div>
+
+            <div class="flex items-center mb-4">
+              <input id="notAvailable" type="radio" [value]="false" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" formControlName="isAvailable">
+              <label for="notAvailable" class="select-none ms-2 text-sm font-medium text-heading">
+                Not Available
+              </label>
+            </div>
+          </fieldset>
         <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button> &nbsp;
         <button type="button" (click)="updateRoom()" class="text-white bg-success box-border border border-transparent hover:bg-success-strong focus:ring-4 focus:ring-success-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Update</button> &nbsp;
         <button type="button" (click)="clearForm()" class="text-white bg-warning  box-border border border-transparent hover:bg-warning-strong focus:ring-4 focus:ring-warning-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Clear</button>
@@ -77,16 +115,19 @@
         <tr>
           <th scope="col" class="px-6 py-3 font-medium">#</th>
           <th scope="col" class="px-6 py-3 font-medium">
-            rooms name
+            Rooms name
           </th>
           <th scope="col" class="px-6 py-3 font-medium">
-            rooms Phone
+            Rooms type
           </th>
           <th scope="col" class="px-6 py-3 font-medium">
-            rooms Email
+            Rooms capacity
           </th>
           <th scope="col" class="px-6 py-3 font-medium">
-            rooms Website
+            Rooms Booking Status
+          </th>
+          <th scope="col" class="px-6 py-3 font-medium">
+            Rooms Available Status
           </th>
           <th scope="col" class="px-6 py-3 font-medium">
             Action
@@ -100,9 +141,10 @@
                 {{ (currentPage - 1) * pageSize + $index + 1 }}
               </td>
               <td class="px-6 py-3">{{ rooms.name }}</td>
+              <td class="px-6 py-3">{{ rooms.type }}</td>
               <td class="px-6 py-3">{{ rooms.capacity }}</td>
-              <td class="px-6 py-3">{{ rooms.company_id }}</td>
-              <td class="px-6 py-3">{{ rooms.package_id }}</td>
+              <td class="px-6 py-3"> {{ rooms.isBooked ? 'Book' : 'Cancel' }}</td>
+              <td class="px-6 py-3"> {{ rooms.isAvailable ? 'Available' : 'Not Available' }}</td>
               <td class="px-6 py-3">
                 <div class="flex items-center gap-2">
                   <button type="button" (click)="editRoom(rooms.id)"
