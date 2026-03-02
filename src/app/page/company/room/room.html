@@ -83,8 +83,8 @@
               </label>
             </div>
           </fieldset>
-        <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button> &nbsp;
-        <button type="button" (click)="updateRoom()" class="text-white bg-success box-border border border-transparent hover:bg-success-strong focus:ring-4 focus:ring-success-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Update</button> &nbsp;
+        <button id="btnAdd"  type="submit" [disabled]="roomForm.invalid || isEditMode" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button> &nbsp;
+        <button id="btnUpdate" type="button" [disabled]="!isEditMode"  (click)="updateRoom()" class="text-white bg-success box-border border border-transparent hover:bg-success-strong focus:ring-4 focus:ring-success-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Update</button> &nbsp;
         <button type="button" (click)="clearForm()" class="text-white bg-warning  box-border border border-transparent hover:bg-warning-strong focus:ring-4 focus:ring-warning-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Clear</button>
       </form>
     </div>

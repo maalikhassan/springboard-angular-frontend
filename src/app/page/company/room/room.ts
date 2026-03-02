@@ -18,6 +18,7 @@ import {PackageService} from '../service/package/package-service';
 })
 export class RoomComponent {
 
+  isEditMode = false;
   packages :any[] =[];
   companies:any[] =[];
   roomForm: FormGroup;
@@ -141,8 +142,14 @@ export class RoomComponent {
   }
   clearForm() {
     this.roomForm.reset();
-    this.roomForm.get('isBooked')?.disable();
-    this.roomForm.get('isAvailable')?.disable();
+    this.roomForm.patchValue({
+      isBooked: false,
+      isAvailable: true,
+      company_id:"Choose a Company",
+      type:"Choose a Room Type",
+      package_id:"Choose a Package"
+    });
+    this.isEditMode = false;
   }
   editRoom(id: number){
     this.service.editRoomById(id).subscribe(
@@ -150,6 +157,7 @@ export class RoomComponent {
         this.roomForm.patchValue(room);
         this.roomForm.get('isBooked')?.enable();
         this.roomForm.get('isAvailable')?.enable();
+        this.isEditMode = true;
       },
       () => {
         alert('Failed to save room!');
@@ -162,6 +170,14 @@ export class RoomComponent {
         this.getRoom();
         this.roomForm.get('isBooked')?.disable();
         this.roomForm.get('isAvailable')?.disable();
+        this.roomForm.patchValue({
+          isBooked: false,
+          isAvailable: true,
+          company_id:"Choose a Company",
+          type:"Choose a Room Type",
+          package_id:"Choose a Package"
+        });
+
       },
       () => {
         alert('Failed to delete room!');
@@ -187,5 +203,9 @@ export class RoomComponent {
 
     this.roomForm.get('isBooked')?.disable();
     this.roomForm.get('isAvailable')?.disable();
+    this.roomForm.get('package_id')?.setValue("Choose a Package");
+    this.roomForm.get('company_id')?.setValue("Choose a Company");
+    this.roomForm.get('type')?.setValue("Choose a Room Type");
+
   }
 }

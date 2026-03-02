@@ -11,6 +11,8 @@ import {CompanyService} from './service/company/company-service';
   styleUrl: './company.css',
 })
 export class CompanyComponent implements OnInit{
+
+  isEditMode = false;
   companyForm: FormGroup;
   companies: any[] = [];
   currentPage = 1;
@@ -106,11 +108,13 @@ export class CompanyComponent implements OnInit{
   }
   clearForm() {
     this.companyForm.reset();
+    this.isEditMode = false;
   }
   editCompany(id: number){
     this.service.editCompanyById(id).subscribe(
       (company:any) => {
         this.companyForm.patchValue(company);
+        this.isEditMode = true;
       },
       () => {
         alert('Failed to save company!');

@@ -15,6 +15,7 @@ import {PackageService} from '../../service/package/package-service';
 })
 export class Package {
 
+  isEditMode = false;
   packages :any[] =[];
   currentPage = 1;
   pageSize = 5;
@@ -103,11 +104,13 @@ export class Package {
   }
   clearForm() {
     this.packageForm.reset();
+    this.isEditMode = false;
   }
   editPackage(id: number){
     this.service.editPackageById(id).subscribe(
       (Package:any) => {
         this.packageForm.patchValue(Package);
+        this.isEditMode = true;
       },
       () => {
         alert('Failed to save Package!');
